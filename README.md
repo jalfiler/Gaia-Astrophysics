@@ -10,6 +10,8 @@ Earth-based telescopes can only measure distances well out to ~50 pc
 
 
 Rank the globular clusters in the table by the ease of separating the cluster members from the field stars, using the Gaia data (DR3). 
+
+
 <img width="461" alt="Screen Shot 2022-07-05 at 4 12 47 PM" src="https://user-images.githubusercontent.com/97199509/177431855-23d08f51-a305-4a65-a288-031ca6bafbfb.png">
 
 Database: (https://people.smp.uq.edu.au/HolgerBaumgardt/globular/) - data of each globular cluster.
