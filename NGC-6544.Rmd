@@ -1,0 +1,49 @@
+---
+title: "NGC 6544"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+ngc6544 <- read_csv("1657065339571O-result.csv") 
+```
+
+
+```{libraries}
+library(tidyverse)
+library(readr)
+```
+
+## Regression of ra + dec
+
+```{r X1657065339571O_result, echo=FALSE}
+lm(ra ~ dec, data = X1657065339571O_result)
+```
+
+## graph of ra + dec, pmra + pmdec
+```{r}
+ggplot(X1657065339571O_result, aes(x= dec, y = ra)) + geom_point()
+```
+```{r}
+ggplot(X1657065339571O_result, aes(x= pmdec, y = pmra)) + geom_point()
+```
+
+
+```{r}
+## Proper motion 
+```
+```{r}
+ggplot(X1657065339571O_result, aes(x= bp_rp, y = phot_g_mean_mag)) + geom_point()
+```
+```{r}
+hist(X1657065339571O_result$radial_velocity, breaks = 20)
+# Radio Velocity 
+```
+```{r}
+hist(X1657065339571O_result$mh_gspphot, breaks = 5)
+# metallicity over hydrogen
+```
+
