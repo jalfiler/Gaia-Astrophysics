@@ -39,6 +39,7 @@ Is this cluster observable from Apache Point? (https://airmass.org/chart/obsid:a
 ##
 Technologies used:
 * RStudio
+* Jupyter Notebook
 * ADQL
 * SQL (Azure)
 * Docker
