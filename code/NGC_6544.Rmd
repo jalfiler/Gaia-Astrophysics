@@ -193,13 +193,46 @@ ngc_6553 %>%
   geom_point(alpha=0.5, size= 2, color = 'blue') +
   labs(y="ra", x="dec")
 ```
-
 #### Model 5
 
 a. Use `lm()` to regress pmra on pmdec and save the regression as `model_5`.
 
 ```{r}
-model_5 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6553)
+model_5 <- lm(pmra ~ pmdec, data = ngc_6553)
+```
+
+b. Regression results from the fifth model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional 0.46002 unit increase in pmra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_5)
+```
+
+c.Plot results from `model_5`.
+
+```{r}
+ggplot(data = model_5, aes(x = pmdec, y = pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="pmra", x="pmdec") +
+  stat_smooth()
+```
+
+#### Graph
+
+```{r}
+ngc_6553 %>%
+  ggplot(aes(pmdec,pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="pmra", x="pmdec") 
+```
+
+#### Model 6
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_6`.
+
+```{r}
+model_6 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6553)
 ```
 
 b. Regression results from the fifth model using `summary()`.
@@ -207,13 +240,13 @@ b. Regression results from the fifth model using `summary()`.
 An increase of one unit of pmdec is associated with an additional -1.8339 unit decrease in pmra. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_5)
+summary(model_6)
 ```
 
-c. Plot results from `model_5`.
+c. Plot results from `model_6`.
 
 ```{r}
-ggplot(data = model_5, aes(x = bp_rp, y = phot_g_mean_mag)) +
+ggplot(data = model_6, aes(x = bp_rp, y = phot_g_mean_mag)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="phot_g_mean_mag", x="bp_rp") +
   stat_smooth()
@@ -257,12 +290,12 @@ terzan_12 <- read_csv("1657165792389O-result.csv")
 summary(terzan_12)
 ```
 
-#### Model 6
+#### Model 7
 
-a. Use `lm()` to regress ra on dec and save the regression as `model_6`.
+a. Use `lm()` to regress ra on dec and save the regression as `model_7`.
 
 ```{r}
-model_6 <- lm(ra ~ dec, data = terzan_12)
+model_7 <- lm(ra ~ dec, data = terzan_12)
 ```
 
 b. Regression results from the first model using `summary()`.
@@ -270,13 +303,13 @@ b. Regression results from the first model using `summary()`.
 An increase of one unit of dec is associated with an additional 0.01603 unit increase in ra. This relationship is statistically significant at < 1.
 
 ```{r}
-summary(model_6)
+summary(model_7)
 ```
 
-c. Plot results from `model_6`.
+c. Plot results from `model_7`.
 
 ```{r}
-ggplot(data = model_6, aes(x = dec, y = ra)) +
+ggplot(data = model_7, aes(x = dec, y = ra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="ra", x="dec") +
   stat_smooth()
@@ -291,12 +324,12 @@ terzan_12 %>%
   labs(y="ra", x="dec")
 ```
 
-#### Model 7
+#### Model 8
 
-a. Use `lm()` to regress pmra on pmdec and save the regression as `model_7`.
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_8`.
 
 ```{r}
-model_7 <- lm(pmra ~ pmdec, data = terzan_12)
+model_8 <- lm(pmra ~ pmdec, data = terzan_12)
 ```
 
 b. Regression results from the second model using `summary()`.
@@ -304,13 +337,13 @@ b. Regression results from the second model using `summary()`.
 An increase of one unit of pmdec is associated with an additional 0.17153 unit increase in pmra. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_7)
+summary(model_8)
 ```
 
-c. Plot results from `model_7`.
+c. Plot results from `model_8`.
 
 ```{r}
-ggplot(data = model_7, aes(x = pmdec, y = pmra)) +
+ggplot(data = model_8, aes(x = pmdec, y = pmra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="pmra", x="pmdec") +
   stat_smooth()
@@ -352,12 +385,12 @@ ngc_6380 <- read_csv("1657166932125O-result.csv")
 summary(ngc_6380)
 ```
 
-#### Model 8
+#### Model 9
 
-a. Use `lm()` to regress ra on dec and save the regression as `model_8`.
+a. Use `lm()` to regress ra on dec and save the regression as `model_9`.
 
 ```{r}
-model_8 <- lm(ra ~ dec, data = ngc_6380)
+model_9 <- lm(ra ~ dec, data = ngc_6380)
 ```
 
 b. Regression results from the first model using `summary()`.
@@ -365,13 +398,13 @@ b. Regression results from the first model using `summary()`.
 An increase of one unit of dec is associated with an additional 0.35053 unit increase in ra. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_8)
+summary(model_9)
 ```
 
-c. Plot results from `model_8`.
+c. Plot results from `model_9`.
 
 ```{r}
-ggplot(data = model_8, aes(x = dec, y = ra)) +
+ggplot(data = model_9, aes(x = dec, y = ra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="ra", x="dec") +
   stat_smooth()
@@ -386,13 +419,13 @@ ngc_6380 %>%
   labs(y="ra", x="dec")
 ```
 
-#### Model 9
+#### Model 10
 
 
-a. Use `lm()` to regress pmra on pmdec and save the regression as `model_9`.
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_10`.
 
 ```{r}
-model_9 <- lm(pmra ~ pmdec, data = ngc_6380)
+model_10 <- lm(pmra ~ pmdec, data = ngc_6380)
 ```
 
 b. Regression results from the second model using `summary()`.
@@ -400,13 +433,13 @@ b. Regression results from the second model using `summary()`.
 An increase of one unit of pmdec is associated with an additional 0.17272 unit increase in pmra. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_9)
+summary(model_10)
 ```
 
-c. Plot results from `model_9`.
+c. Plot results from `model_10`.
 
 ```{r}
-ggplot(data = model_9, aes(x = pmdec, y = pmra)) +
+ggplot(data = model_10, aes(x = pmdec, y = pmra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="pmra", x="pmdec") +
   stat_smooth()
@@ -421,12 +454,12 @@ ngc_6380 %>%
   labs(y="pmra", x="pmdec") 
 ```
 
-#### Model 10
+#### Model 11
 
-a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_10`.
+a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_11`.
 
 ```{r}
-model_10 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6380)
+model_11 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6380)
 ```
 
 
@@ -435,13 +468,13 @@ b. Regression results from the third model using `summary()`.
 An increase of one unit of bp_rp is associated with an additional -1.02741 unit decrease in phot_g_mean_mag. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_10)
+summary(model_11)
 ```
 
-c. Plot results from `model_10`.
+c. Plot results from `model_11`.
 
 ```{r}
-ggplot(data = model_10, aes(x = bp_rp, y = phot_g_mean_mag)) +
+ggplot(data = model_11, aes(x = bp_rp, y = phot_g_mean_mag)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="phot_g_mean_mag", x="bp_rp") +
   stat_smooth()
@@ -482,12 +515,12 @@ fsr_1758 <- read.csv("1657248340808O-result.csv")
 summary(fsr_1758)
 ```
 
-#### Model 11
+#### Model 12
 
-a. Use `lm()` to regress ra on dec and save the regression as `model_11`.
+a. Use `lm()` to regress ra on dec and save the regression as `model_12`.
 
 ```{r}
-model_11 <- lm(ra ~ dec, data = fsr_1758)
+model_12 <- lm(ra ~ dec, data = fsr_1758)
 ```
 
 b. Regression results from the first model using `summary()`.
@@ -495,13 +528,13 @@ b. Regression results from the first model using `summary()`.
 An increase of one unit of dec is associated with an additional 0.59648 unit increase in ra. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_11)
+summary(model_12)
 ```
 
-c. Plot results from `model_11`.
+c. Plot results from `model_12`.
 
 ```{r}
-ggplot(data = model_11, aes(x = dec, y = ra)) +
+ggplot(data = model_12, aes(x = dec, y = ra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="ra", x="dec") +
   stat_smooth()
@@ -516,12 +549,12 @@ fsr_1758 %>%
   labs(y="ra", x="dec")
 ```
 
-#### Model 12
+#### Model 13
 
-a. Use `lm()` to regress pmra on pmdec and save the regression as `model_12`.
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_13`.
 
 ```{r}
-model_12 <- lm(pmra ~ pmdec, data = fsr_1758)
+model_13 <- lm(pmra ~ pmdec, data = fsr_1758)
 ```
 
 b. Regression results from the second model using `summary()`.
@@ -529,13 +562,13 @@ b. Regression results from the second model using `summary()`.
 An increase of one unit of pmdec is associated with an additional 0.04283 unit increase in pmra. This relationship is statistically significant at < 0.1.
 
 ```{r}
-summary(model_12)
+summary(model_13)
 ```
 
-c. Plot results from `model_12`.
+c. Plot results from `model_13`.
 
 ```{r}
-ggplot(data = model_12, aes(x = pmdec, y = pmra)) +
+ggplot(data = model_13, aes(x = pmdec, y = pmra)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="pmra", x="pmdec") +
   stat_smooth()
@@ -550,12 +583,12 @@ fsr_1758 %>%
   labs(y="pmra", x="pmdec") 
 ```
 
-#### Model 13
+#### Model 14
 
-a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_13`.
+a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_14`.
 
 ```{r}
-model_13 <- lm(phot_g_mean_mag ~ bp_rp, data = fsr_1758)
+model_14 <- lm(phot_g_mean_mag ~ bp_rp, data = fsr_1758)
 ```
 
 b. Regression results from the third model using `summary()`.
@@ -563,13 +596,13 @@ b. Regression results from the third model using `summary()`.
 An increase of one unit of bp_rp is associated with an additional -0.44855 unit decrease in phot_g_mean_mag. This relationship is statistically significant at < 0.001.
 
 ```{r}
-summary(model_13)
+summary(model_14)
 ```
 
-c. Plot results from `model_13`.
+c. Plot results from `model_14`.
 
 ```{r}
-ggplot(data = model_13, aes(x = bp_rp, y = phot_g_mean_mag)) +
+ggplot(data = model_14, aes(x = bp_rp, y = phot_g_mean_mag)) +
   geom_point(alpha=0.5, size=2, color = 'orange') +
   labs(y="phot_g_mean_mag", x="bp_rp") +
   stat_smooth()
@@ -597,5 +630,5 @@ ggplot(fsr_1758, aes(mh_gspphot)) +
 ggplot(fsr_1758, aes(radial_velocity)) + 
   geom_histogram(bins = 30)
 ```
-```
+
 
