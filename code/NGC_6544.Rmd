@@ -12,8 +12,15 @@ Here is the first example:
 
 Variables used: `source_id`, `ra`, `dec`, `parallax`, `pmra`, `pmdec` , `bp_rp`, `mh_gspphot`, `radial_velocity`, `phot_g_mean_mag`.
 
+Set working directory.
+
 ```{r}
-ngc_6544 <- read.csv("1657065339571O-result.csv")
+setwd("~/Desktop/AstroPhysics/Gaia-L4")
+```
+
+
+```{r}
+ngc_6544 <- read.csv("~/Desktop/AstroPhysics/Gaia-L4/1657065339571O-result.csv")
 ```
 
 ```{r}
@@ -151,7 +158,7 @@ ggplot(ngc_6544, aes(radial_velocity)) +
 # Gaia DR3, NGC 6553
 
 ```{r}
-ngc_6553 <- read_csv("1657165215641O-result.csv")
+ngc_6553 <- read.csv("~/Desktop/AstroPhysics/Gaia-L4/1657165215641O-result.csv")
 ```
 
 #### Summary Statistics 
@@ -281,7 +288,7 @@ ggplot(ngc_6553, aes(radial_velocity)) +
 
 
 ```{r}
-terzan_12 <- read_csv("1657165792389O-result.csv")
+terzan_12 <- read.csv("~/Desktop/AstroPhysics/Gaia-L4/1657165792389O-result.csv")
 ```
 
 #### Summary Statistics 
@@ -376,7 +383,7 @@ ggplot(terzan_12, aes(radial_velocity)) +
 # Gaia DR3, NGC 6380
 
 ```{r}
-ngc_6380 <- read_csv("1657166932125O-result.csv") 
+ngc_6380 <- read.csv("~/Desktop/AstroPhysics/Gaia-L4/1657166932125O-result.csv") 
 ```
 
 #### Summary Statistics 
@@ -506,7 +513,7 @@ ggplot(ngc_6380, aes(radial_velocity)) +
 # Gaia DR3, FSR 1758
 
 ```{r}
-fsr_1758 <- read.csv("1657248340808O-result.csv")
+fsr_1758 <- read.csv("~/Desktop/AstroPhysics/Gaia-L4/1657248340808O-result.csv")
 ```
 
 #### Summary Statistics
