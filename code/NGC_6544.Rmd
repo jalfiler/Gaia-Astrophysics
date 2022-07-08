@@ -1,0 +1,601 @@
+---
+title: "Gaia DR3, NGC 6544"
+output:
+  html_document:
+    df_print: paged
+---
+
+Rank the globular clusters in the table by the ease of separating the cluster members from the field stars, using the [Gaia DR3](https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access). 
+
+Here is the first example: 
+[NGC 6544](https://people.smp.uq.edu.au/HolgerBaumgardt/globular/fits/ngc6544.html). The database of each globular cluster can be explored [here](https://people.smp.uq.edu.au/HolgerBaumgardt/globular/).
+
+Variables used: `source_id`, `ra`, `dec`, `parallax`, `pmra`, `pmdec` , `bp_rp`, `mh_gspphot`, `radial_velocity`, `phot_g_mean_mag`.
+
+```{r}
+ngc_6544 <- read.csv("1657065339571O-result.csv")
+```
+
+```{r}
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(ggpubr)
+```
+
+#### Summary Statistics 
+
+```{r}
+summary(ngc_6544)
+```
+
+#### Model 1
+
+a. Use `lm()` to regress ra on dec and save the regression as `model_1`.
+
+```{r}
+model_1 <- lm(ra ~ dec, data = ngc_6544)
+```
+
+b. Regression results from the first model using `summary()`.
+
+An increase of one unit of dec is associated with an additional -0.22698 unit decrease in ra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_1)
+```
+
+c. Plot results from `model_1`.
+
+```{r}
+ggplot(data = model_1, aes(x = dec, y = ra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="ra", x="dec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6544 %>%
+  ggplot(aes(dec,ra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="ra", x="dec")
+```
+
+#### Model 2
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_2`.
+
+```{r}
+model_2 <- lm(pmra ~ pmdec, data = ngc_6544)
+```
+
+b. Regression results from the second model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional 0.058145 unit increase in pmra. This relationship is statistically significant at < 0.001.
+
+
+```{r}
+summary(model_2)
+```
+
+c. Plot results from `model_2`.
+
+```{r}
+ggplot(data = model_2, aes(x = pmdec, y = pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="pmra", x="pmdec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6544 %>%
+  ggplot(aes(pmdec,pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="pmra", x="pmdec") 
+```
+
+#### Model 3
+
+a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_3`.
+
+```{r}
+model_3 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6544)
+```
+
+b. Regression results from the third model using `summary()`.
+
+An increase of one unit of bp_rp is associated with an additional -0.02021 unit decrease in phot_g_mean_mag. This relationship is statistically significant at < 1.
+
+
+```{r}
+summary(model_3)
+```
+
+c. Plot results from `model_3`.
+
+```{r}
+ggplot(data = model_3, aes(x = bp_rp, y = phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="phot_g_mean_mag", x="bp_rp") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6544 %>%
+  ggplot(aes(bp_rp,phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="phot_g_mean_mag", x="bp_rp")
+```
+
+#### Metallicity Over Hydrogen
+
+```{r}
+ggplot(ngc_6544, aes(mh_gspphot)) +
+  geom_histogram(bins = 30)
+```
+
+
+#### Radio Velocity
+
+```{r}
+ggplot(ngc_6544, aes(radial_velocity)) +
+  geom_histogram()
+```
+
+# Gaia DR3, NGC 6553
+
+```{r}
+ngc_6553 <- read_csv("1657165215641O-result.csv")
+```
+
+#### Summary Statistics 
+
+```{r}
+summary(ngc_6553)
+```
+
+#### Model 4
+
+a. Use `lm()` to regress ra on dec and save the regression as `model_4`.
+
+```{r}
+model_4 <- lm(ra ~ dec, data = ngc_6553)
+```
+
+b. Regression results from the fourth model using `summary()`.
+
+An increase of one unit of dec is associated with an additional  0.64366 unit increase in ra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_4)
+```
+
+c. Plot results from `model_4`.
+
+```{r}
+ggplot(data = model_4, aes(x = dec, y = ra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="ra", x="dec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6553 %>%
+  ggplot(aes(dec,ra)) +
+  geom_point(alpha=0.5, size= 2, color = 'blue') +
+  labs(y="ra", x="dec")
+```
+
+#### Model 5
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_5`.
+
+```{r}
+model_5 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6553)
+```
+
+b. Regression results from the fifth model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional -1.8339 unit decrease in pmra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_5)
+```
+
+c. Plot results from `model_5`.
+
+```{r}
+ggplot(data = model_5, aes(x = bp_rp, y = phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="phot_g_mean_mag", x="bp_rp") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6553 %>%
+  ggplot(aes(bp_rp,phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="phot_g_mean_mag", x="bp_rp")
+```
+
+
+#### Metallicity Over Hydrogen
+
+```{r}
+ggplot(ngc_6553, aes(mh_gspphot)) +
+  geom_histogram(bins = 30)
+```
+
+#### Radio Velocity
+
+
+```{r}
+ggplot(ngc_6553, aes(radial_velocity)) +
+  geom_histogram(bins = 30)
+```
+
+# Gaia DR3, Terzan 12
+
+
+```{r}
+terzan_12 <- read_csv("1657165792389O-result.csv")
+```
+
+#### Summary Statistics 
+
+```{r}
+summary(terzan_12)
+```
+
+#### Model 6
+
+a. Use `lm()` to regress ra on dec and save the regression as `model_6`.
+
+```{r}
+model_6 <- lm(ra ~ dec, data = terzan_12)
+```
+
+b. Regression results from the first model using `summary()`.
+
+An increase of one unit of dec is associated with an additional 0.01603 unit increase in ra. This relationship is statistically significant at < 1.
+
+```{r}
+summary(model_6)
+```
+
+c. Plot results from `model_6`.
+
+```{r}
+ggplot(data = model_6, aes(x = dec, y = ra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="ra", x="dec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+terzan_12 %>%
+  ggplot(aes(dec,ra)) +
+  geom_point(alpha=0.5, size= 2, color = 'blue') +
+  labs(y="ra", x="dec")
+```
+
+#### Model 7
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_7`.
+
+```{r}
+model_7 <- lm(pmra ~ pmdec, data = terzan_12)
+```
+
+b. Regression results from the second model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional 0.17153 unit increase in pmra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_7)
+```
+
+c. Plot results from `model_7`.
+
+```{r}
+ggplot(data = model_7, aes(x = pmdec, y = pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="pmra", x="pmdec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+terzan_12 %>%
+  ggplot(aes(pmdec,pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="pmra", x="pmdec") 
+```
+
+#### Metallicity Over Hydrogen
+
+```{r}
+ggplot(terzan_12, aes(mh_gspphot)) +
+  geom_histogram(bins = 30)
+```
+
+#### Radio Velocity
+
+
+```{r}
+ggplot(terzan_12, aes(radial_velocity)) +
+  geom_histogram(bins = 30)
+```
+
+# Gaia DR3, NGC 6380
+
+```{r}
+ngc_6380 <- read_csv("1657166932125O-result.csv") 
+```
+
+#### Summary Statistics 
+
+```{r}
+summary(ngc_6380)
+```
+
+#### Model 8
+
+a. Use `lm()` to regress ra on dec and save the regression as `model_8`.
+
+```{r}
+model_8 <- lm(ra ~ dec, data = ngc_6380)
+```
+
+b. Regression results from the first model using `summary()`.
+
+An increase of one unit of dec is associated with an additional 0.35053 unit increase in ra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_8)
+```
+
+c. Plot results from `model_8`.
+
+```{r}
+ggplot(data = model_8, aes(x = dec, y = ra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="ra", x="dec") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+ngc_6380 %>%
+  ggplot(aes(dec,ra)) +
+  geom_point(alpha=0.5, size= 2, color = 'blue') +
+  labs(y="ra", x="dec")
+```
+
+#### Model 9
+
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_9`.
+
+```{r}
+model_9 <- lm(pmra ~ pmdec, data = ngc_6380)
+```
+
+b. Regression results from the second model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional 0.17272 unit increase in pmra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_9)
+```
+
+c. Plot results from `model_9`.
+
+```{r}
+ggplot(data = model_9, aes(x = pmdec, y = pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="pmra", x="pmdec") +
+  stat_smooth()
+```
+
+#### Graph
+
+```{r}
+ngc_6380 %>%
+  ggplot(aes(pmdec,pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="pmra", x="pmdec") 
+```
+
+#### Model 10
+
+a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_10`.
+
+```{r}
+model_10 <- lm(phot_g_mean_mag ~ bp_rp, data = ngc_6380)
+```
+
+
+b. Regression results from the third model using `summary()`.
+
+An increase of one unit of bp_rp is associated with an additional -1.02741 unit decrease in phot_g_mean_mag. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_10)
+```
+
+c. Plot results from `model_10`.
+
+```{r}
+ggplot(data = model_10, aes(x = bp_rp, y = phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="phot_g_mean_mag", x="bp_rp") +
+  stat_smooth()
+```
+
+#### Graph
+
+```{r}
+ngc_6380 %>%
+  ggplot(aes(bp_rp,phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="phot_g_mean_mag", x="bp_rp")
+```
+
+#### Metallicity Over Hydrogen
+
+```{r}
+ggplot(ngc_6380, aes(mh_gspphot)) +
+  geom_histogram(bins = 30)
+```
+
+#### Radio Velocity
+
+```{r}
+ggplot(ngc_6380, aes(radial_velocity)) +
+  geom_histogram(bins = 30)
+```
+
+# Gaia DR3, FSR 1758
+
+```{r}
+fsr_1758 <- read.csv("1657248340808O-result.csv")
+```
+
+#### Summary Statistics
+
+```{r}
+summary(fsr_1758)
+```
+
+#### Model 11
+
+a. Use `lm()` to regress ra on dec and save the regression as `model_11`.
+
+```{r}
+model_11 <- lm(ra ~ dec, data = fsr_1758)
+```
+
+b. Regression results from the first model using `summary()`.
+
+An increase of one unit of dec is associated with an additional 0.59648 unit increase in ra. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_11)
+```
+
+c. Plot results from `model_11`.
+
+```{r}
+ggplot(data = model_11, aes(x = dec, y = ra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="ra", x="dec") +
+  stat_smooth()
+```
+
+#### Graph
+
+```{r}
+fsr_1758 %>%
+  ggplot(aes(dec,ra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="ra", x="dec")
+```
+
+#### Model 12
+
+a. Use `lm()` to regress pmra on pmdec and save the regression as `model_12`.
+
+```{r}
+model_12 <- lm(pmra ~ pmdec, data = fsr_1758)
+```
+
+b. Regression results from the second model using `summary()`.
+
+An increase of one unit of pmdec is associated with an additional 0.04283 unit increase in pmra. This relationship is statistically significant at < 0.1.
+
+```{r}
+summary(model_12)
+```
+
+c. Plot results from `model_12`.
+
+```{r}
+ggplot(data = model_12, aes(x = pmdec, y = pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="pmra", x="pmdec") +
+  stat_smooth()
+```
+
+#### Graph
+
+```{r}
+fsr_1758 %>%
+  ggplot(aes(pmdec,pmra)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="pmra", x="pmdec") 
+```
+
+#### Model 13
+
+a. Use `lm()` to regress phot_g_mean_mag on bp_rp and save the regression as `model_13`.
+
+```{r}
+model_13 <- lm(phot_g_mean_mag ~ bp_rp, data = fsr_1758)
+```
+
+b. Regression results from the third model using `summary()`.
+
+An increase of one unit of bp_rp is associated with an additional -0.44855 unit decrease in phot_g_mean_mag. This relationship is statistically significant at < 0.001.
+
+```{r}
+summary(model_13)
+```
+
+c. Plot results from `model_13`.
+
+```{r}
+ggplot(data = model_13, aes(x = bp_rp, y = phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'orange') +
+  labs(y="phot_g_mean_mag", x="bp_rp") +
+  stat_smooth()
+```
+
+#### Graph 
+
+```{r}
+fsr_1758 %>%
+  ggplot(aes(bp_rp,phot_g_mean_mag)) +
+  geom_point(alpha=0.5, size=2, color = 'blue') +
+  labs(y="phot_g_mean_mag", x="bp_rp")
+```
+
+#### Metallicity Over Hydrogen
+
+```{r}
+ggplot(fsr_1758, aes(mh_gspphot)) +
+  geom_histogram(bins = 30)
+```
+
+#### Radio Velocity
+
+```{r}
+ggplot(fsr_1758, aes(radial_velocity)) + 
+  geom_histogram(bins = 30)
+```
+```
+
